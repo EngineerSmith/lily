@@ -130,6 +130,10 @@ if love.filesystem then
 	lilyHandlerFunc("writeFile", 2, function(t)
 		return t[1].write(t[1], t[2], t[3])
 	end)
+	local customLily = require("package.lily")
+	for funcName, func in pairs(customLily) do
+	    lilyHandlerFunc(funcName, 1, func)
+	end
 end
 
 if hasGraphics then

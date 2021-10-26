@@ -502,6 +502,10 @@ if love.filesystem then
 	newLilyFunction("readFile")
 	newLilyFunction("write")
 	newLilyFunction("writeFile")
+	local customLily = require("package.lily")
+	for funcName, _ in pairs(customLily) do
+	    newLilyFunction(funcName)
+	end
 end
 
 -- Most love.graphics functions are not meant for multithread, but we can circumvent that.
