@@ -502,9 +502,13 @@ if love.filesystem then
 	newLilyFunction("readFile")
 	newLilyFunction("write")
 	newLilyFunction("writeFile")
-	local customLily = require("package.lily")
-	for funcName, _ in pairs(customLily) do
-	    newLilyFunction(funcName)
+	local customLily = require("package2.lily")
+	for funcName, func in pairs(customLily) do
+	    if type(func) == "function" then
+	        newLilyFunction(funcName)
+	    elseif type(func) == "table" then -- includes handler
+	        newLilyFunction(funcName, func[2])
+	    end
 	end
 end
 
