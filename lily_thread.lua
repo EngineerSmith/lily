@@ -130,12 +130,12 @@ if love.filesystem then
 	lilyHandlerFunc("writeFile", 2, function(t)
 		return t[1].write(t[1], t[2], t[3])
 	end)
-	local customLily = require("package2.lily")
-	for funcName, func in pairs(customLily) do
+	local lilyFuncs = require("util.lilyFunc")
+	for funcName, func in pairs(lilyFuncs) do
 	    if type(func) == "function" then
 	        lilyHandlerFunc(funcName, 1, func)
 	    elseif type(func) == "table" then -- includes handler
-	        lilyHandlerFunc(funcName, 1, func[1])
+	        lilyHandlerFunc(funcName, 1, func.loader)
 	    end
 	end
 end
